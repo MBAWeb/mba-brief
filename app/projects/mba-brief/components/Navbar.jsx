@@ -19,7 +19,6 @@ export function Navbar({ navItems }) {
                     {item.label}
                 </a>
             ))}
-
           </nav>
 
           <div className="flex items-center gap-3">
