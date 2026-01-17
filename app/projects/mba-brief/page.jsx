@@ -3,6 +3,9 @@
 import { Container } from "./components/Container";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
+import { FeaturesGrid } from "./components/FeaturesGrid";
+import { StatsRow } from "./components/StatsRow";
+import { PricingCards } from "./components/PricingCards";
 
 const navItems = [
   { id: "features", label: "Features" },
@@ -30,165 +33,35 @@ const pricingPlans = [
   {
     name: "Free",
     price: "$0",
-    sub: "Great for trying it out",
+    per: "",
+    tagline: "Great for trying it out",
     features: ["10 summaries / month", "Copy export", "Basic tone controls"],
     cta: "Start free",
     featured: false,
+    badge: null,
   },
   {
     name: "Pro",
     price: "$12",
-    sub: "For students and professionals",
+    per: "/mo",
+    tagline: "For students and professionals",
     features: ["Unlimited summaries", "Action item detection", "Share links + Markdown export"],
     cta: "Go Pro",
-    featured: true, // we’ll style this one as the “best value”
+    featured: true,
+    badge: "Best value",
   },
   {
     name: "Team",
     price: "$24",
-    sub: "For teams that collaborate",
+    per: "/mo",
+    tagline: "For teams that collaborate",
     features: ["Shared workspaces", "Admin controls", "Priority support"],
     cta: "Contact sales",
     featured: false,
+    badge: null,
   },
 ];
 
-function FeaturesGrid() {
-  return (
-    <section id="features" className="py-16 sm:py-20">
-      <Container>
-        <div className="max-w-2xl">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Built to turn content into action
-          </h2>
-          <p className="mt-3 text-white/70">
-            MBA Brief focuses on clarity: fast summaries, clean takeaways, and actionable next steps.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="rounded-2xl border border-white/10 bg-white/5 p-5 hover:bg-white/10"
-            >
-              <h3 className="text-base font-semibold">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function StatsRow() {
-  return (
-    <section id="testimonials" className="py-16 sm:py-20">
-      <Container>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-              Trusted for clarity
-            </h2>
-            <p className="mt-3 text-white/70">
-              A simple proof section that reinforces credibility without distracting from the product.
-            </p>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="rounded-xl border border-white/10 bg-black/30 p-5">
-                <p className="text-2xl font-semibold">{s.value}</p>
-                <p className="mt-1 text-sm text-white/70">{s.label}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-6 text-xs text-white/50">*Concept metrics for portfolio demonstration.</p>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function PricingCards() {
-  return (
-    <section id="pricing" className="py-16 sm:py-20">
-      <Container>
-        <div className="max-w-2xl">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Simple pricing that scales with you
-          </h2>
-          <p className="mt-3 text-white/70">
-            Choose a plan that fits your workflow. Upgrade anytime.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {pricingPlans.map((plan) => (
-            <div
-              key={plan.name}
-              className={[
-                "rounded-2xl border p-6",
-                plan.featured
-                  ? "border-white/30 bg-white/10"
-                  : "border-white/10 bg-white/5",
-              ].join(" ")}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="text-base font-semibold">{plan.name}</h3>
-                  <p className="mt-1 text-sm text-white/60">{plan.sub}</p>
-                </div>
-
-                {plan.featured && (
-                  <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-black">
-                    Best value
-                  </span>
-                )}
-              </div>
-
-              <div className="mt-6">
-                <p className="text-4xl font-semibold tracking-tight">
-                  {plan.price}
-                  <span className="text-base font-medium text-white/60">
-                    {plan.name === "Free" ? "" : "/mo"}
-                  </span>
-                </p>
-              </div>
-
-              <ul className="mt-6 space-y-2 text-sm text-white/70">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex gap-2">
-                    <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-white/60" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#cta"
-                className={[
-                  "mt-8 inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-medium",
-                  plan.featured
-                    ? "bg-white text-black hover:bg-white/90"
-                    : "border border-white/15 bg-white/5 text-white hover:bg-white/10",
-                ].join(" ")}
-              >
-                {plan.cta}
-              </a>
-
-              <p className="mt-3 text-xs text-white/50">
-                Concept pricing for portfolio demonstration.
-              </p>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 function FinalCTA() {
   return (
@@ -269,7 +142,6 @@ function FinalCTA() {
   );
 }
 
-
 function PlaceholderSection({ id, title, text }) {
   return (
     <section id={id} className="py-16">
@@ -287,9 +159,9 @@ export default function Page() {
 
       <Navbar navItems={navItems} />
       <Hero />
-      <FeaturesGrid />
-      <StatsRow />
-      <PricingCards />
+      <FeaturesGrid features={features} />
+      <StatsRow stats={stats} />
+      <PricingCards pricingPlans={pricingPlans} />
       <FinalCTA />
 
     </main>
